@@ -1,7 +1,7 @@
 /* 
  * Ejercicio 7
  * Autor: Nicolás Trusz
- * Usuario GitHub: nicolastrusz
+ * Usuario GitHub: nicotrusz
  */
 #include<stdio.h>
 int multiplicacion(int numero1, int numero2)

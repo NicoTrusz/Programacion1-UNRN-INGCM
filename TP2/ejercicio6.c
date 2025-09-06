@@ -1,7 +1,7 @@
 /* 
  * Ejercicio 6
  * Autor: Nicolás Trusz
- * Usuario GitHub: nicolastrusz
+ * Usuario GitHub: nicotrusz
  */
 
  int suma_primos(int numero)
