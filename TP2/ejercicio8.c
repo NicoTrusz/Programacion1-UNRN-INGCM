@@ -3,8 +3,9 @@
  * Autor: Nicolás Trusz
  * Usuario GitHub: nicotrusz
  */
-
- int es_defectivo(int numero)
+#include <stdio.h>
+#include <stdbool.h>
+ bool es_defectivo(int numero)
  {
     int suma = 0;
     for (int i = 0; i < numero; i++  )
