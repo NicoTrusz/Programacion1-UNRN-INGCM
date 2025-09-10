@@ -3,6 +3,7 @@
  * Autor: Nicolás Trusz
  * Usuario GitHub: nicotrusz
  */
+// me queda pendiente a ver porque no pasa del if (es_defectivo(numero))
 #include <stdio.h>
 #include <stdbool.h>
  bool es_defectivo(int numero)
@@ -17,9 +18,9 @@
     }
     return suma < numero;
  }
- void imprimir(int numero)
+ void imprimir(int numero) /******* bandera */
  {
-    if (es_defectivo(numero))
+    if (es_defectivo(numero)) /******* bandera*/
     {
         printf("Es defectivo\n");
     }
