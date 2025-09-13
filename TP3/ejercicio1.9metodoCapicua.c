@@ -31,43 +31,47 @@
         bandera = CADENA_SIN_TERMINADOR;
     }
     // comparo caracteres sin inportar si son mayuscula o minuscula
-    for (size_t i =0; i < largo/2; i++)
+    for (size_t i =0; i<largo; i++)
     {
-        char a = cadena[i]; // de izq --> der como recorro la cadena
-        char b = cadena[largo -1 -i]; // de izq <-- der como recorro la cadena
-        printf("cadena a= %c ",a);
-        printf("cadena b= %c ",b);
-        printf("\n");
+       char cadenab[i];
+       cadenab[i] = cadena[largo -1 -i];
+       
         /*
         con a recorro la primera mitad de la cadena y con b la segunda mitad
             largo = 6 
         Ej: a =[0 , 1 , 2] b= [5, 4, 3]
         */
+
         /*
         otra opcion que estoy analizando es la de capicua de copiar la cadena entera
         darla vuelta y comparar 
         for (size_t i =0; i<largo; i++)
         {
-            cadenab[largo -1 -i] = cadena[i];
+            cadenab[i] = cadena[largo-1-i];
         }
         if (cadenab[i]!=cadena[i])
         {
             bandera = FALSE;
         }
         */
+
         // Normalizar o pasar todo a minuscula
-        if (a >= 'A' && a <= 'Z')
+        if (cadena[i] >= 'A' && cadena[i] <= 'Z')
         {
-            a += 32; // esto lo realizo para pasar de 'A' a 'a' ya que en la tabla ASQUI hay una diferencia de 32 enteros
+            cadena[i] += 32; // esto lo realizo para pasar de 'A' a 'a' ya que en la tabla ASQUI hay una diferencia de 32 enteros
         } 
-        if (b >= 'A' && b <= 'Z')
+        if (cadenab[largo -1 -i] >= 'A' && cadena[largo -1 -i] <= 'Z')
         {
-            b += 32; // esto lo realizo para pasar de 'A' a 'a' ya que en la tabla ASQUI hay una diferencia de 32 enteros
+            cadenab[largo -1 -i] += 32; // esto lo realizo para pasar de 'A' a 'a' ya que en la tabla ASQUI hay una diferencia de 32 enteros
         }
-        if (a!=b)
-        {
-            bandera = FALSE;
-        }
+        printf("%c",cadena[i]);
+        printf("%c",cadena[i]);
+        printf("\n");
+       
+       if (cadenab[i]!=cadena[i])
+       {
+        bandera = FALSE;
+       }
 
     }
     return bandera ;
@@ -76,7 +80,7 @@
  int main ()
 {
     // Dependiendo de la dimencion o la cadena sera true, folse o sin \0
-    // Si la palabra es impar como en este caso la letra que se encuentre en el medio no sera evaluada 
+    // en este pude solucionar el problema de los valores medios con la logica del ejercicio 15 de la practica 1 y evaluando como si fuera capicua
     char palabra[]= "Neuquen";
     int resultado = es_palindromo_seguro(20, palabra);
     printf("resultado = %d",resultado);

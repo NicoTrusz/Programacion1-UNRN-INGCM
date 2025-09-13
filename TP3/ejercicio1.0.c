@@ -67,6 +67,6 @@ int main()
 
     char origen3[10]= "Hola mundo";
     char destino3[5];
-    int resultado3 = copia_cadena_segura(destino3, 5, origen3, 10);
+    int resultado3 = copia_cadena_segura(destino3, 5, origen3, 10); // CADENA DESTINO_INSUFICIENTE
     return 0;
 }
