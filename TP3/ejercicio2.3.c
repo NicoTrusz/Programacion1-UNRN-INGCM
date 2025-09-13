@@ -3,7 +3,9 @@
  * Autor: Nicolás Trusz
  * Usuario GitHub: nicotrusz
  */
-
+#include<stdio.h>
+#include<stdlib.h>
+#define ORDEN_INVALIDO -1
  /* REFERENCIA PARA EJERCICIO ECHO EN CLASE CON EL PROFESOR DANIEL
 Ordenar de mayor a menor
 
