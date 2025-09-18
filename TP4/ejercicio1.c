@@ -26,24 +26,24 @@ void imprimir_matrisz(int matriz[FILAS][COLUMNAS])
     {
         for(int j=0; j<COLUMNAS;j++)
         {
-            printf("%d",matriz[i][j]);
+            printf(" %d ",matriz[i][j]);
         }
-        printf("\n");
+        printf("|\n|");
     }
 }
 
-void main ()
+int main ()
 {
     int A[FILAS][COLUMNAS]= {{1,2,3},{4,5,6},{7,8,9}};
     int B[FILAS][COLUMNAS]= {{9,8,7},{6,5,4},{3,2,1}};
     int C[FILAS][COLUMNAS];
 
     suma_matrices(A,B,C);
-    printf("Matrisz A");
+    printf("Matrisz A\n|");
     imprimir_matrisz(A);
-    printf("Matrisz B");
+    printf("Matrisz B\n|");
     imprimir_matrisz(B);
-    printf("Matrisz C");
+    printf("Matrisz C\n|");
     imprimir_matrisz(C);
     return 0;
 }
