@@ -25,7 +25,7 @@
     {
         for(int j=0; j<M_CUADRADA; j++)
         {
-            printf("%d",matrisz[i][j]);
+            printf("%4d",matrisz[i][j]);
         }
         printf("\n");
     }

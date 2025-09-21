@@ -22,7 +22,7 @@ void multiplicarMatrices(int A[FILAS][COLUMNAS], int B[FILAS][COLUMNAS], int C[F
 void imprimirMatriz(int M[FILAS][COLUMNAS]) {
     for (int i = 0; i < FILAS; i++) {
         for (int j = 0; j < COLUMNAS; j++) {
-            printf("%d", M[i][j]);
+            printf("%4d", M[i][j]);
         }
         printf("\n");
     }

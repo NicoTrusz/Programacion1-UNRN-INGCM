@@ -26,7 +26,7 @@ void imprimir_matrisz(int matriz[FILAS][COLUMNAS])
     {
         for(int j=0; j<COLUMNAS;j++)
         {
-            printf(" %d ",matriz[i][j]);
+            printf(" %4d ",matriz[i][j]);
         }
         printf("|\n|");
     }
