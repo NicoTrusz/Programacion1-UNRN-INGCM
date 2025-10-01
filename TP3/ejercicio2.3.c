@@ -86,7 +86,7 @@ void imprimir_arreglo(int arreglo[], size_t largo)
 int main ()
 {
     int datos[]= {5,2,9,1,7};
-    size_t largo = sizeof(datos)/sizeof(datos[0]);
+    size_t largo = sizeof(datos)/sizeof(datos[0]); // dimentcion del arreglo
 
     printf("Original: ");
     imprimir_arreglo(datos, largo);
