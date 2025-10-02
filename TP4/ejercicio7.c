@@ -6,12 +6,12 @@
 #include<stdio.h>
 # define N 3
 
-void reotar_90 (int A[N][N],int R[N][N])
+void rotar_90 (int A[N][N],int R[N][N])
 {
     for(int i =0; i<N;i++)
         for(int j=0; j<N; j++)
         {
-             R[i][j] = A[2-j][i];
+             R[i][j] = A[N-1-j][i];
         }
 }
 
@@ -33,7 +33,7 @@ int main()
     int R[N][N];
     printf("Matriz A\n");
     imprimir_matriz(A);
-    reotar_90(A,R);
+    rotar_90(A,R);
     printf("\nMatriz rotada 90 \n");
     imprimir_matriz(R);
 
