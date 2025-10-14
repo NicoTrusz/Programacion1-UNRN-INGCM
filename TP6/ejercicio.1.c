@@ -20,8 +20,9 @@ int main ()
 
     // solicitar datos de usuario
     printf("Ingrese el nombre del Alumno: ");
-    fgets(miAlumno.nombre, sizeof(miAlumno.nombre), stdin);
-
+    fgets(miAlumno.nombre, sizeof(miAlumno.nombre), stdin); //---> forma mas optima
+    //scanf("%20s",miAlumno.nombre); // %20 para solo poder ingresar 20 elementos en mi cadena
+                                // en las cadenas no se requiere & para la asignacion 
     printf("Ingrese la edad del alumno: ");
     scanf("%d", &miAlumno.edad);
 
@@ -30,7 +31,7 @@ int main ()
 
     // Mostrar los datos ingresados
     printf("\nDatos del alumno:\n");
-    printf("Nombre: %s", miAlumno.nombre);
+    printf("Nombre: %s", miAlumno.nombre); // en el caso de usar fgets sacar el /n
     printf("Edad: %d\n", miAlumno.edad);
     printf("Promedio: %.2f\n", miAlumno.promedio);
 
