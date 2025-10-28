@@ -1,5 +1,5 @@
 /* 
- * Ejercicio 1.0
+ * Ejercicio 5.0
  * Autor: Nicolás Trusz
  * Usuario GitHub: nicotrusz
  */
