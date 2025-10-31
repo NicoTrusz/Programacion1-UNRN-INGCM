@@ -34,26 +34,22 @@ void inicializar_tablero(char **tablero, int tam)
 }
 
 void imprimir_tablero(char **tablero, int tam, bool ocultar)
-{
-    printf("  ");
-    for (int col = 0; col<tam; col++) // <- encabezado de columnas
+{   
+    printf("   ");
+    for (int col = 0; col < tam; col++)
     {
-        printf("%d",col);
-        printf("\n");
-        for(int fila =0; fila< tam ; fila++ ) // <- recorre filas
-        {
-            printf("%d",fila); // <- imprime indice de filas 
-            for(int col = 0; col<tam; col++) // <- recorre columnas
-            {
-                char c = tablero[fila][col];
-                if (ocultar && c == 'B')
-                {
-                    c= '~';
-                    printf("%c",c);
-                }
-                printf("\n");
-            }
+     printf("%2d ", col);   
+    }
+    printf("\n");
+
+    for (int fila = 0; fila < tam; fila++) {
+        printf("%2d ", fila);
+        for (int col = 0; col < tam; col++) {
+            char c = tablero[fila][col];
+            if (ocultar && c == 'B') c = AGUA;  // Oculta barcos enemigos
+            printf(" %c ", c);
         }
+        printf("\n");
     }
 }
 
@@ -72,7 +68,7 @@ bool puede_colocar(char **tablero, int fila, int col, int tam_barco, bool horizo
         {
             r += i;
         }
-        if (r >= tam || c >= tam || tablero[r][c] != '~')
+        if (r >= tam || c >= tam || tablero[r][c] != AGUA)
         {
             valido = false;
             break;
@@ -92,35 +88,74 @@ void colocar_barco(char **tablero, int tam_barco, int tam)
         {
             for (int i= 0; i < tam_barco; i++)
             {
-            
+                int r = fila + (horizontal ? 0 : i);
+                int c = col + (horizontal ? i : 0);
+                tablero[r][c]=BARCO;
             }
+            break;
         }
     }
 }
 
 void colocar_barcos(char **tablero, int tam)
 {
-
+    for (int i=0; i < num_barcos; i++)
+    {
+        colocar_barco(tablero,barcos[i].tam,tam);
+    }
 }
 
 bool disparar(char **tablero, int fila, int col)
-{
-
+{   bool valido = false;
+    if (tablero[fila][col] == BARCO)
+    {
+        tablero[fila][col] = IMPACTO;
+        valido = true;
+    }else if (tablero[fila][col] == AGUA)
+    {
+        tablero[fila][col]= FALLO;
+    }
+    return valido;
 }
 
 bool quedan_barcos(char **tablero, int tam)
 {
-
+    bool valido = false;
+    for (int i =0; i<tam ; i++)
+    {
+        for(int j =0; j<tam; j++)
+        {
+            if (tablero[i][j] == BARCO)
+            {
+                valido = true;
+            }
+        }
+    }
+    return valido;
 }
 
-void disparo_computadora(char **tablero, bool **disparos, int tam, FILE *log, int *score)
+bool disparo_computadora(char **tablero, bool **disparos, int tam, FILE *log, int *score)
 {
+    int f, c;
+    do
+    {
+        f = rand()%tam;
+        c = rand()%tam;
+    }while (disparos[f][c]);
+    disparos[f][c]= true;
 
+    bool acierto = disparar(tablero,f,c);
+    if (acierto)
+    {
+        (*score)++;
+    }
+    registrar_disparo(log, f,c,acierto);
+   return acierto;
 }
 
 void registrar_disparo(FILE *archivo, int fila, int col, bool acierto)
 {
-
+    fprintf(archivo, "Disparo en (%d,%d): %s\n",fila,col, acierto ? "Impacto" : "Agua");
 }
 
 bool **crear_matriz_bool(int tam)
