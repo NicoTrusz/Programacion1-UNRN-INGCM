@@ -14,44 +14,23 @@
 ------------------------------------------------------------------*/
 #include "jugadores.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
-/*
-  Función: inicializar_jugadores
-  ------------------------------
-  Solicita el nombre de cada jugador y los inicializa con score y disparos en
-  cero.
-
-  Parámetros:
-    - jugadores: arreglo de estructuras Jugador
-    - cantidad: número de jugadores
-
-  Retorna:
-    - void
-*/
-
 void inicializar_jugadores(Jugador jugadores[], int cantidad) {
+  system("cls");
+  printf("Cantidad de jugadores: %d\n", MAX_JUGADORES);
   for (int i = 0; i < cantidad; i++) {
     printf("Ingrese nombre del Jugador %d: ", i + 1);
     scanf("%s", jugadores[i].nombre);
+    char c = 0;
+    do {
+      c = getchar();
+    } while (c != '\n');
     jugadores[i].score = 0;
     jugadores[i].disparos = 0;
   }
 }
-
-/*
-  Función: mostrar_ranking_final
-  ------------------------------
-  Ordena los jugadores por score descendente y muestra sus estadísticas.
-
-  Parámetros:
-    - jugadores: arreglo de estructuras Jugador
-    - cantidad: número de jugadores
-    - score_cpu: aciertos totales de la computadora
-
-  Retorna:
-    - void
-*/
 
 void mostrar_ranking_final(Jugador jugadores[], int cantidad, int score_cpu) {
   // Ordenar por score descendente

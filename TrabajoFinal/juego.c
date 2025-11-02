@@ -167,8 +167,7 @@ bool **crear_matriz_bool(int tam) {
   }
   return matriz;
 }
-// funcion liberar_matriz_bool se pasa el parametro del tamaño y la direccion de
-// la matriz y se la libera la memoria
+
 void liberar_matriz_bool(bool **matriz, int tam) {
   for (int i = 0; i < tam; i++) {
     free(matriz[i]);

@@ -33,12 +33,12 @@ int main() {
   inicializar_jugadores(jugadores, cantidad_jugadores);
 
   char **tablero_cpu = crear_tablero(tam);
-  bool **disparos_cpu = crear_matriz_bool(tam);
+  // bool **disparos_cpu = crear_matriz_bool(tam);
   inicializar_tablero(tablero_cpu, tam);
   colocar_barcos(tablero_cpu, tam);
 
-  FILE *log_computadora = fopen("computadora.txt", "w");
-  int score_cpu = 0;
+  // FILE *log_computadora = fopen("computadora.txt", "w");
+  // int score_cpu = 0;
 
   for (int turno = 0; turno < cantidad_jugadores; turno++) {
     // printf("\033[2J\033[H"); no funciono
@@ -58,10 +58,10 @@ int main() {
     bool **disparos_cpu = crear_matriz_bool(tam);
 
     // Archivos de registro
-    FILE *log_jugador =
-        fopen(jugadores[turno].nombre, "w"); // archivo binario por participante
+    FILE *log_jugador = fopen(jugadores[turno].nombre,
+                              "wb"); // archivo binario por participante
     FILE *log_computadora =
-        fopen("computadora.txt", "a"); // archivo txt acumulativo
+        fopen("computadora.txt", "w"); // archivo txt para CP
 
     char *mensaje_jugador = "";
     char *mensaje_cpu = "";
@@ -76,7 +76,11 @@ int main() {
       printf(" Tablero de %s:\n", jugadores[turno].nombre);
       imprimir_tablero(tablero_jugador, tam, false);
       printf("\n Tablero enemigo:\n");
-      imprimir_tablero(tablero_cpu, tam, false);
+      /* no hacer trampa y dejar en true jajajaja =D
+       EL valor True o False hacen que en la funcion imprimir_tablero
+       la condicion Ocultar haga su trabajo en ocultar o no los Barcos 'B'
+      */
+      imprimir_tablero(tablero_cpu, tam, true);
       printf(
           "\nLeyenda: B = Barco   X = Impacto  O = Agua  ~ = no disparado\n");
 
@@ -88,10 +92,21 @@ int main() {
       }
       int f, c;
       do {
-        printf("Disparo (fila columna): ");
-        if (scanf("%d %d", &f, &c) != 2) {
-          printf("\nEntrada invalida\n");
-          exit(1);
+        /* printf("Disparo (fila columna): ");
+         if (scanf("%d %d", &f, &c) != 2) {
+           printf("\nEntrada invalida\n");
+           exit(1);
+         }*/
+        while (true) {
+          printf("Entrada (fila columna): ");
+          if (scanf("%d %d", &f, &c) == 2) {
+            break;
+          }
+          char c = 0;
+          do {
+            c = getchar(); // getchar lee un caracter de entrada
+          } while (c != '\n');
+          printf("Entrada invalida. ");
         }
         if (f < 0 || f >= tam || c < 0 || c >= tam) {
           printf("Coordenadas fuera de rango.\n");
@@ -145,12 +160,18 @@ int main() {
 
 /*
 ----------------------NOTAS PARA REPARAR---------------------------------
+----------------------------SOLUCIONADO----------------------------------
+        * Problemas con la imprecion del tablero
+       ** Se soluciono pero se tuvo que modificar toda la funcion de
+          Imprimir_tablero
+-------------------------------------------------------------------------
 --------------------------FALTA ARREGLAR---------------------------------
         * En las cordenadas si se colocan letras o caracteres
           se rompe y entra en bucle de llamada de cordenadas
 
-       ** arreglo momentaneo si se agrega al gun valor que no
+       ** Arreglo momentaneo si se agrega al gun valor que no
           sea numerico finaliza el programa
+       ** Solucionado con getchart
 -------------------------------------------------------------------------
 ---------------------------SOLUCIONADO-----------------------------------
         * Problema con la secuencia de jugador al pasar de un jugador
@@ -159,5 +180,17 @@ int main() {
 
       ** Problema solucionado jugadores
          se implemento archivos binarios para el profe y txt
+--------------------------------------------------------------------------
+------------------------ERROR NO MORTAL-----------------------------------
+       * EL score_cpu al no ser acumulativo solo se compara contra el
+         ultimo jugador en el caso que contra el jugador 1 gane la CP
+         y contra el ultimo jugador pierda no se hace score entre jugadas
+         por lo cual solo queda el ultimo valor de jugada
+--------------------------------------------------------------------------
+------------------------FALLA SCANF EN JUGADORES.C------------------------
+       * Al agregar un nombre + un espacio toma como si estuviera
+       colocando doble nombre de jugadores ya que el Scanf con %s
+       lee hasta recibir un espacio
+    ** Solucionado con getchart
 --------------------------------------------------------------------------
 */
