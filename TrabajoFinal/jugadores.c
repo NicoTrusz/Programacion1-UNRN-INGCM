@@ -16,6 +16,20 @@
 #include <stdio.h>
 #include <string.h>
 
+/*
+  Función: inicializar_jugadores
+  ------------------------------
+  Solicita el nombre de cada jugador y los inicializa con score y disparos en
+  cero.
+
+  Parámetros:
+    - jugadores: arreglo de estructuras Jugador
+    - cantidad: número de jugadores
+
+  Retorna:
+    - void
+*/
+
 void inicializar_jugadores(Jugador jugadores[], int cantidad) {
   for (int i = 0; i < cantidad; i++) {
     printf("Ingrese nombre del Jugador %d: ", i + 1);
@@ -24,6 +38,20 @@ void inicializar_jugadores(Jugador jugadores[], int cantidad) {
     jugadores[i].disparos = 0;
   }
 }
+
+/*
+  Función: mostrar_ranking_final
+  ------------------------------
+  Ordena los jugadores por score descendente y muestra sus estadísticas.
+
+  Parámetros:
+    - jugadores: arreglo de estructuras Jugador
+    - cantidad: número de jugadores
+    - score_cpu: aciertos totales de la computadora
+
+  Retorna:
+    - void
+*/
 
 void mostrar_ranking_final(Jugador jugadores[], int cantidad, int score_cpu) {
   // Ordenar por score descendente

@@ -41,7 +41,7 @@ int main() {
   int score_cpu = 0;
 
   for (int turno = 0; turno < cantidad_jugadores; turno++) {
-    //printf("\033[2J\033[H"); no funciono
+    // printf("\033[2J\033[H"); no funciono
     system("cls");
 
     // Tablero del jugador
@@ -58,8 +58,10 @@ int main() {
     bool **disparos_cpu = crear_matriz_bool(tam);
 
     // Archivos de registro
-    FILE *log_jugador = fopen(jugadores[turno].nombre, "w"); // archivo binario por participante 
-    FILE *log_computadora = fopen("computadora.txt", "a"); // archivo txt acumulativo
+    FILE *log_jugador =
+        fopen(jugadores[turno].nombre, "w"); // archivo binario por participante
+    FILE *log_computadora =
+        fopen("computadora.txt", "a"); // archivo txt acumulativo
 
     char *mensaje_jugador = "";
     char *mensaje_cpu = "";
@@ -67,7 +69,7 @@ int main() {
 
     while (true) {
       system("cls");
-      //printf("\033[2J\033[H"); al final no funciono :(
+      // printf("\033[2J\033[H"); al final no funciono :(
       printf("=====================================\n");
       printf("        TURNO DE %s\n", jugadores[turno].nombre);
       printf("=====================================\n\n");
@@ -75,33 +77,29 @@ int main() {
       imprimir_tablero(tablero_jugador, tam, false);
       printf("\n Tablero enemigo:\n");
       imprimir_tablero(tablero_cpu, tam, false);
-      printf("\nLeyenda: B = Barco   X = Impacto  O = Agua  ~ = no disparado\n");
+      printf(
+          "\nLeyenda: B = Barco   X = Impacto  O = Agua  ~ = no disparado\n");
 
-      if (strlen(mensaje_jugador) > 0)
-      {
+      if (strlen(mensaje_jugador) > 0) {
         printf("\nResultado de tu disparo: %s\n", mensaje_jugador);
       }
-      if (strlen(mensaje_cpu) > 0)
-      {
+      if (strlen(mensaje_cpu) > 0) {
         printf("Resultado del disparo de la computadora: %s\n", mensaje_cpu);
       }
       int f, c;
       do {
         printf("Disparo (fila columna): ");
-        if (scanf("%d %d", &f, &c) != 2)
-        {
+        if (scanf("%d %d", &f, &c) != 2) {
           printf("\nEntrada invalida\n");
           exit(1);
         }
-        if (f < 0 || f >= tam || c < 0 || c >= tam)
-        {
+        if (f < 0 || f >= tam || c < 0 || c >= tam) {
           printf("Coordenadas fuera de rango.\n");
-        }
-        else if (tablero_cpu[f][c] == 'X' || tablero_cpu[f][c] == 'O')
-        {
+        } else if (tablero_cpu[f][c] == 'X' || tablero_cpu[f][c] == 'O') {
           printf("Ya disparaste ahi.\n");
         }
-      } while (f < 0 || f >= tam || c < 0 || c >= tam || tablero_cpu[f][c] == 'X' || tablero_cpu[f][c] == 'O');
+      } while (f < 0 || f >= tam || c < 0 || c >= tam ||
+               tablero_cpu[f][c] == 'X' || tablero_cpu[f][c] == 'O');
 
       bool acierto = disparar(tablero_cpu, f, c);
       jugadores[turno].disparos++;
@@ -114,13 +112,16 @@ int main() {
       registrar_disparo(log_jugador, f, c, acierto);
 
       if (!quedan_barcos(tablero_cpu, tam)) {
-        printf("%s gano! Hundio todos los barcos enemigos.\n", jugadores[turno].nombre);
+        printf("%s gano! Hundio todos los barcos enemigos.\n",
+               jugadores[turno].nombre);
         break;
       }
 
       printf("\nTurno de la computadora...\n");
-      bool acierto_cpu = disparo_computadora(tablero_jugador, disparos_cpu, tam, log_computadora, &score_cpu);
-      mensaje_cpu = acierto_cpu ? "La COMPUTADORA IMPACTO" : "LA COMPUTADORA AGUA";
+      bool acierto_cpu = disparo_computadora(tablero_jugador, disparos_cpu, tam,
+                                             log_computadora, &score_cpu);
+      mensaje_cpu =
+          acierto_cpu ? "La COMPUTADORA IMPACTO" : "LA COMPUTADORA AGUA";
 
       if (!quedan_barcos(tablero_jugador, tam)) {
         printf("La computadora hundio todos tus barcos. Fin del turno.\n");
@@ -136,19 +137,19 @@ int main() {
   }
 
   // Mostrar ranking final
-  mostrar_ranking_final(jugadores, cantidad_jugadores, 0); // score_cpu no es acumulativo
+  mostrar_ranking_final(jugadores, cantidad_jugadores,
+                        0); // score_cpu no es acumulativo
 
   return 0;
 }
-
 
 /*
 ----------------------NOTAS PARA REPARAR---------------------------------
 --------------------------FALTA ARREGLAR---------------------------------
         * En las cordenadas si se colocan letras o caracteres
           se rompe y entra en bucle de llamada de cordenadas
-          
-       ** arreglo momentaneo si se agrega al gun valor que no 
+
+       ** arreglo momentaneo si se agrega al gun valor que no
           sea numerico finaliza el programa
 -------------------------------------------------------------------------
 ---------------------------SOLUCIONADO-----------------------------------
@@ -156,7 +157,7 @@ int main() {
           a otro no se limpia tablero ni se limpia las jugadas lo
           cual rompe la secuencia de jugadores arreglar de manera urgente
 
-      ** Problema solucionado jugadores 
-         se implemento archivos binarios para el profe y txt 
+      ** Problema solucionado jugadores
+         se implemento archivos binarios para el profe y txt
 --------------------------------------------------------------------------
 */

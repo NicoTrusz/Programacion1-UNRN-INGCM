@@ -75,9 +75,9 @@ bool puede_colocar(char **tablero, int fila, int col, int tam_barco,
   for (int i = 0; i < tam_barco; i++) {
     int r = fila;
     int c = col;
-    // si el barco esta en pocicion horizontal me desplazo en la columna sino en la fila
-    if (horizontal) 
-    {
+    // si el barco esta en pocicion horizontal me desplazo en la columna sino en
+    // la fila
+    if (horizontal) {
       c += i;
     } else {
       r += i;
