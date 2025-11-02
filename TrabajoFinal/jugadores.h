@@ -1,7 +1,16 @@
-/*
- estructura para agregar mas de un solo jugador
- aun se esta por implementar
-*/
+/*--------------------------------------------------------
+  ===========================
+    Archivo: jugadores.h
+  ===========================
+  Encabezado del módulo de gestión de jugadores.
+
+  Define:
+  - Estructura Jugador: nombre, score, disparos
+  - Constante MAX_JUGADORES
+  - Prototipos:
+    - inicializar_jugadores: carga nombres
+    - mostrar_ranking_final: ordena y muestra resultados
+----------------------------------------------------------*/
 #ifndef JUGADORES_H
 #define JUGADORES_H
 

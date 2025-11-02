@@ -1,3 +1,20 @@
+/*------------------------------------------------------------------------------
+  ===========================
+  Archivo: juego.c
+  ===========================
+  Implementación de funciones relacionadas al tablero y lógica de juego.
+
+  Funciones clave:
+  - crear_tablero / liberar_tablero: manejo de memoria
+  - inicializar_tablero: rellena con '~'
+  - imprimir_tablero: muestra el tablero con coordenadas
+  - colocar_barcos: ubica barcos aleatoriamente sin superposición
+  - disparar: marca impacto o fallo
+  - quedan_barcos: verifica si quedan barcos activos
+  - disparo_computadora: lógica de disparo aleatorio sin repetir
+  - registrar_disparo: guarda jugada en archivo
+  - crear_matriz_bool / liberar_matriz_bool: para seguimiento de disparos CPU
+-------------------------------------------------------------------------------*/
 
 #include "juego.h"
 #include <stdlib.h>

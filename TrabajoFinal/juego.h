@@ -1,8 +1,20 @@
-/*
-Estructura y funciones que maneja la creacion de tablero, colocacion de barcos y
-malloc/free registro de disparos, imprecion por terminal, etc todo relacionado
-al tablero
-*/
+/*----------------------------------------------------------
+  ===========================
+       Archivo: juego.h
+  ===========================
+  Encabezado del módulo de tablero y lógica de juego.
+
+  Define:
+  - Constantes visuales (AGUA, BARCO, IMPACTO, FALLO)
+  - Estructura Barco
+  - Prototipos de funciones para:
+    - Creación y liberación de tableros
+    - Inicialización y visualización
+    - Colocación de barcos
+    - Disparos y verificación
+    - Registro de jugadas
+-----------------------------------------------------------*/
+
 #ifndef JUEGO_H
 #define JUEGO_H
 

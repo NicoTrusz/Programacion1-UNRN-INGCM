@@ -1,3 +1,17 @@
+/*-----------------------------------------------------------------
+  ===========================
+      Archivo: jugadores.c
+  ===========================
+  Implementación de funciones para gestión de jugadores.
+
+  Funciones:
+  - inicializar_jugadores: solicita nombres por consola
+  - mostrar_ranking_final: ordena por score y muestra precisión
+
+  Nota:
+  - El ranking se ordena descendente por aciertos
+  - Se calcula precisión como % de aciertos sobre disparos
+------------------------------------------------------------------*/
 #include "jugadores.h"
 #include <stdio.h>
 #include <string.h>
