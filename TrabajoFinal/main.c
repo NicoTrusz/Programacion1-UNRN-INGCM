@@ -1,3 +1,21 @@
+/*-------------------------------------------------------------------
+  ===========================
+        Archivo: main.c
+  ===========================
+  Punto de entrada del juego Batalla Naval.
+
+  Funcionalidades:
+  - Inicializa jugadores (hasta MAX_JUGADORES)
+  - Crea tableros individuales para cada jugador y para la computadora
+  - Ejecuta turnos de disparo jugador vs computadora
+  - Registra jugadas en archivos
+  - Muestra ranking final ordenado por puntería
+
+  Requiere:
+  - juego.h / juego.c → lógica de tableros y disparos
+  - jugadores.h / jugadores.c → gestión de jugadores y estadísticas
+---------------------------------------------------------------------*/
+
 #include "juego.h"
 #include "jugadores.h"
 #include <stdbool.h>
@@ -125,18 +143,20 @@ int main() {
 
 
 /*
-----------------------NOTAS PARA REPARAR------------------------
+----------------------NOTAS PARA REPARAR---------------------------------
+--------------------------FALTA ARREGLAR---------------------------------
         * En las cordenadas si se colocan letras o caracteres
           se rompe y entra en bucle de llamada de cordenadas
           
        ** arreglo momentaneo si se agrega al gun valor que no 
           sea numerico finaliza el programa
-        
+-------------------------------------------------------------------------
+---------------------------SOLUCIONADO-----------------------------------
         * Problema con la secuencia de jugador al pasar de un jugador
-          a otro no se limpia tablero ni se limpia las jugadas lo cual rompe 
-          la secuencia de jugadores arreglar de manera urgente
+          a otro no se limpia tablero ni se limpia las jugadas lo
+          cual rompe la secuencia de jugadores arreglar de manera urgente
 
       ** Problema solucionado jugadores 
-         se implemento archivos binarios para el profe
-
+         se implemento archivos binarios para el profe y txt 
+--------------------------------------------------------------------------
 */

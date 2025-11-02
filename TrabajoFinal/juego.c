@@ -1,3 +1,4 @@
+
 #include "juego.h"
 #include <stdlib.h>
 #include <time.h>
