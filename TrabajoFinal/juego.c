@@ -93,12 +93,30 @@ bool puede_colocar(char **tablero, int fila, int col, int tam_barco,
 void colocar_barco(char **tablero, int tam_barco, int tam) {
   while (true) {
     bool horizontal = rand() % 2;
-    int fila = rand() % (tam - (horizontal ? 1 : tam_barco));
-    int col = rand() % (tam - (horizontal ? tam_barco : 1));
+    int fila = 0;
+    int col = 0;
+
+    if (horizontal) {
+      fila = rand() % (tam - 1);
+      col = rand() % (tam - tam_barco);
+    } else {
+      fila = rand() % (tam - tam_barco);
+      col = rand() % (tam - 1);
+    }
+
     if (puede_colocar(tablero, fila, col, tam_barco, horizontal, tam)) {
       for (int i = 0; i < tam_barco; i++) {
-        int r = fila + (horizontal ? 0 : i); // !horizontal * i
-        int c = col + (horizontal ? i : 0);  // horizontal * i
+        int r = 0;
+        int c = 0;
+
+        if (horizontal) {
+          r = fila;
+          c = col + i;
+        } else {
+          r = fila + i;
+          c = col;
+        }
+
         tablero[r][c] = BARCO;
       }
       break;
@@ -153,8 +171,11 @@ bool disparo_computadora(char **tablero, bool **disparos, int tam, FILE *log,
 }
 
 void registrar_disparo(FILE *archivo, int fila, int col, bool acierto) {
-  fprintf(archivo, "Disparo en (%d,%d): %s\n", fila, col,
-          acierto ? "Impacto" : "Agua");
+  if (acierto) {
+    fprintf(archivo, "Disparo en (%d,%d): Impacto\n", fila, col);
+  } else {
+    fprintf(archivo, "Disparo en (%d,%d): Agua \n", fila, col);
+  }
 }
 
 bool **crear_matriz_bool(int tam) {

@@ -46,10 +46,12 @@ void mostrar_ranking_final(Jugador jugadores[], int cantidad, int score_cpu) {
 
   printf("\n Ranking Final de Jugadores:\n");
   for (int i = 0; i < cantidad; i++) {
-    float precision =
-        jugadores[i].disparos > 0
-            ? (float)jugadores[i].score / jugadores[i].disparos * 100
-            : 0;
+    float precision = 0;
+    if (jugadores[i].disparos > 0)
+    {
+      precision = (float)jugadores[i].score / jugadores[i].disparos * 100;
+    }
+
     printf("%d. %s - Aciertos: %d | Disparos: %d | Precision: %.2f%%\n", i + 1,
            jugadores[i].nombre, jugadores[i].score, jugadores[i].disparos,
            precision);

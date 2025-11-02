@@ -80,7 +80,7 @@ int main() {
        EL valor True o False hacen que en la funcion imprimir_tablero
        la condicion Ocultar haga su trabajo en ocultar o no los Barcos 'B'
       */
-      imprimir_tablero(tablero_cpu, tam, true);
+      imprimir_tablero(tablero_cpu, tam, false);
       printf(
           "\nLeyenda: B = Barco   X = Impacto  O = Agua  ~ = no disparado\n");
 
@@ -165,7 +165,7 @@ int main() {
        ** Se soluciono pero se tuvo que modificar toda la funcion de
           Imprimir_tablero
 -------------------------------------------------------------------------
---------------------------FALTA ARREGLAR---------------------------------
+--------------------------SOLUCIONADO------------------------------------
         * En las cordenadas si se colocan letras o caracteres
           se rompe y entra en bucle de llamada de cordenadas
 
