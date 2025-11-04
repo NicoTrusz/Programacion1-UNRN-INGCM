@@ -80,7 +80,7 @@ int main() {
        EL valor True o False hacen que en la funcion imprimir_tablero
        la condicion Ocultar haga su trabajo en ocultar o no los Barcos 'B'
       */
-      imprimir_tablero(tablero_cpu, tam, false);
+      imprimir_tablero(tablero_cpu, tam, true);
       printf(
           "\nLeyenda: B = Barco   X = Impacto  O = Agua  ~ = no disparado\n");
 
