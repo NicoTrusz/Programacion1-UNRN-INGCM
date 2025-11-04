@@ -169,7 +169,55 @@ bool disparo_computadora(char **tablero, bool **disparos, int tam, FILE *log,
   registrar_disparo(log, f, c, acierto);
   return acierto;
 }
+bool disparo_computadora_inteligente(char **tablero, bool **disparos, int tam,
+                                     FILE *log, int *score,
+                                     ModoCazeria *estado) {
+  int f = -1, c = -1;
+  bool disparo_valido = false;
 
+  if (estado->cazando) {
+    // Direcciones : 0=arriba, 1=derecha, 2=abajo, 3=izquierda
+    int direccion_f[] = {-1, 0, 1, 0};
+    int direccion_c[] = {0, 1, 0, -1};
+
+    while (estado->intentos < 4 && !disparo_valido) {
+      int dir = estado->direccion_actual;
+      int nf = estado->ultimo_fila + direccion_f[dir];
+      int nc = estado->ultimo_col + direccion_c[dir];
+
+      if (nf >= 0 && nf < tam && nc >= 0 && nc < tam && !disparos[nf][nc]) {
+        f = nf;
+        c = nc;
+        disparo_valido = true;
+      } else {
+        estado->direccion_actual = (estado->direccion_actual + 1) % 4;
+        estado->intentos++;
+      }
+    }
+    if (!disparo_valido) {
+      estado->cazando = false;
+    }
+  }
+  if (!estado->cazando) {
+    do {
+      f = rand() % tam;
+      c = rand() % tam;
+    } while (disparos[f][c]);
+    estado->direccion_actual = 0;
+    estado->intentos = 0;
+  }
+
+  disparos[f][c] = true;
+  bool acierto = disparar(tablero, f, c);
+  if (acierto) {
+    (*score)++;
+    estado->cazando = true;
+    estado->ultimo_fila = f;
+    estado->ultimo_col = c;
+  }
+  registrar_disparo(log, f, c, acierto);
+  return acierto;
+}
 void registrar_disparo(FILE *archivo, int fila, int col, bool acierto) {
   if (acierto) {
     fprintf(archivo, "Disparo en (%d,%d): Impacto\n", fila, col);

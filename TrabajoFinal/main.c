@@ -25,12 +25,33 @@
 #include <time.h>
 
 int main() {
-  srand(time(NULL));
+  srand(time(NULL)); // clk inicio time
   int tam = 8;
   int cantidad_jugadores = MAX_JUGADORES;
-
+  // Inicialización de Jugadores
   Jugador jugadores[MAX_JUGADORES];
   inicializar_jugadores(jugadores, cantidad_jugadores);
+
+  // Seleccion de dificultad
+  bool modo_dificil = false;
+  int opcion;
+  while (true) {
+    printf("Selecciona el modo de juego: \n");
+    printf("1. Normal (CPU Aleatoria)\n");
+    printf(
+        "2. Dificil (CPU Modo Depredador)\n"); // modo caza barcos tras impacto
+    printf("Opcion: ");
+    if (scanf("%d", &opcion) == 1 && (opcion == 1 || opcion == 2)) {
+      break;
+    }
+    // limpieza de buffer
+    char basura = 0;
+    do {
+      basura = getchar(); // getchar lee un caracter de entrada
+    } while (basura != '\n');
+    printf("Entrada invalida. Ingrese 1 o 2 \n ");
+  }
+  modo_dificil = (opcion == 2);
 
   char **tablero_cpu = crear_tablero(tam);
   // bool **disparos_cpu = crear_matriz_bool(tam);
@@ -56,6 +77,8 @@ int main() {
 
     // Matriz de disparos de la computadora
     bool **disparos_cpu = crear_matriz_bool(tam);
+    // Estado de cacería de la CPU (solo se usa si modo_dificil)
+    ModoCazeria estado_cpu = {false, -1, -1, 0, 0};
 
     // Archivos de registro
     FILE *log_jugador = fopen(jugadores[turno].nombre,
@@ -133,8 +156,17 @@ int main() {
       }
 
       printf("\nTurno de la computadora...\n");
-      bool acierto_cpu = disparo_computadora(tablero_jugador, disparos_cpu, tam,
-                                             log_computadora, &score_cpu);
+      bool acierto_cpu;
+
+      if (modo_dificil) {
+        acierto_cpu = disparo_computadora_inteligente(
+            tablero_jugador, disparos_cpu, tam, log_computadora, &score_cpu,
+            &estado_cpu);
+      } else {
+        acierto_cpu = disparo_computadora(tablero_jugador, disparos_cpu, tam,
+                                          log_computadora, &score_cpu);
+      }
+
       mensaje_cpu =
           acierto_cpu ? "La COMPUTADORA IMPACTO" : "LA COMPUTADORA AGUA";
 
@@ -192,5 +224,15 @@ int main() {
        colocando doble nombre de jugadores ya que el Scanf con %s
        lee hasta recibir un espacio
     ** Solucionado con getchart
+--------------------------------------------------------------------------
+---------------------------FALTA IMPLEMENTAR------------------------------
+      ¿Cómo implementó el modo inteligente mediante funciones que
+      analizan la situación y sugieren una acción o jugada mejor?.
+
+    ** En proceso...
+    ** Terminado se celecciona el modo de juego si facil o dificil
+       en el caso de que sea dificil al realizar un Impacto X se hace una
+       cruz por cordenadas hasta el proximo impacto y asi hasta hundir
+       el Barco buena suerte ya me gano 2 veces
 --------------------------------------------------------------------------
 */

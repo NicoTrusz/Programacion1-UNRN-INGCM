@@ -32,6 +32,14 @@ typedef struct {
   int tam;
 } Barco;
 
+typedef struct {
+  bool cazando;    // true si está en modo cacería
+  int ultimo_fila; // última coordenada de impacto
+  int ultimo_col;
+  int direccion_actual; // 0=arriba, 1=derecha, 2=abajo, 3=izquierda
+  int intentos;         // intentos de dirección
+} ModoCazeria;
+
 /*
   Función: crear_tablero
   ----------------------
@@ -143,7 +151,6 @@ void colocar_barcos(char **tablero, int tam);
   Retorna:
     - true si fue impacto, false si fue agua
 */
-
 bool disparar(char **tablero, int fila, int col);
 /*
   Función: quedan_barcos
@@ -176,6 +183,25 @@ bool quedan_barcos(char **tablero, int tam);
 */
 bool disparo_computadora(char **tablero, bool **disparos, int tam, FILE *log,
                          int *score);
+/*
+  Función: disparo_computadora_inteligente
+  ----------------------------------------
+  Disparo mejorado: si acierta, entra en modo cacería y busca alrededor.
+
+  Parámetros:
+    - tablero: tablero del jugador
+    - disparos: matriz de disparos realizados
+    - tam: tamaño del tablero
+    - log: archivo de registro
+    - score: puntero al score de la CPU
+    - estado: puntero al estado interno de la CPU
+
+  Retorna:
+    - true si fue impacto, false si fue agua
+*/
+bool disparo_computadora_inteligente(char **tablero, bool **disparos, int tam,
+                                     FILE *log, int *score,
+                                     ModoCazeria *estado);
 /*
   Función: registrar_disparo
   --------------------------
