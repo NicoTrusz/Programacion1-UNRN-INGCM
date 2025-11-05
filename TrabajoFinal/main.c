@@ -52,7 +52,7 @@ int main() {
     printf("Entrada invalida. Ingrese 1 o 2 \n ");
   }
   modo_dificil = (opcion == 2);
-
+  int score_cpu = 0;
   char **tablero_cpu = crear_tablero(tam);
   // bool **disparos_cpu = crear_matriz_bool(tam);
   inicializar_tablero(tablero_cpu, tam);
@@ -88,7 +88,7 @@ int main() {
 
     char *mensaje_jugador = "";
     char *mensaje_cpu = "";
-    int score_cpu = 0;
+    score_cpu = 0;
 
     while (true) {
       system("cls");
@@ -103,7 +103,7 @@ int main() {
        EL valor True o False hacen que en la funcion imprimir_tablero
        la condicion Ocultar haga su trabajo en ocultar o no los Barcos 'B'
       */
-      imprimir_tablero(tablero_cpu, tam, true);
+      imprimir_tablero(tablero_cpu, tam, false);
       printf(
           "\nLeyenda: B = Barco   X = Impacto  O = Agua  ~ = no disparado\n");
 
@@ -185,7 +185,7 @@ int main() {
 
   // Mostrar ranking final
   mostrar_ranking_final(jugadores, cantidad_jugadores,
-                        0); // score_cpu no es acumulativo
+                        score_cpu); // score_cpu no es acumulativo
 
   return 0;
 }
@@ -218,6 +218,13 @@ int main() {
          ultimo jugador en el caso que contra el jugador 1 gane la CP
          y contra el ultimo jugador pierda no se hace score entre jugadas
          por lo cual solo queda el ultimo valor de jugada
+
+      ** Se soluciono siendo el error un problema dentro del bucle de 
+          jugadores y la solucion implementada es que guarde solamente
+          el puntaje de la ultima partida.
+          Queda de tarea implementar un Score_cpu en el cual sea 
+          acumulativo siendo
+          <score_cpu ((Impactos/ movimientos))/(Maxjugadores)>
 --------------------------------------------------------------------------
 ------------------------FALLA SCANF EN JUGADORES.C------------------------
        * Al agregar un nombre + un espacio toma como si estuviera
@@ -225,7 +232,7 @@ int main() {
        lee hasta recibir un espacio
     ** Solucionado con getchart
 --------------------------------------------------------------------------
----------------------------FALTA IMPLEMENTAR------------------------------
+--------------------------------IMPLEMENTADO------------------------------
       ¿Cómo implementó el modo inteligente mediante funciones que
       analizan la situación y sugieren una acción o jugada mejor?.
 
@@ -233,6 +240,6 @@ int main() {
     ** Terminado se celecciona el modo de juego si facil o dificil
        en el caso de que sea dificil al realizar un Impacto X se hace una
        cruz por cordenadas hasta el proximo impacto y asi hasta hundir
-       el Barco buena suerte ya me gano 2 veces
+       el Barco.
 --------------------------------------------------------------------------
 */
