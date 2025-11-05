@@ -26,7 +26,7 @@
 
 int main() {
   srand(time(NULL)); // clk inicio time
-  int tam = 8;
+  int tam = TAM;
   int cantidad_jugadores = MAX_JUGADORES;
   // Inicialización de Jugadores
   Jugador jugadores[MAX_JUGADORES];
@@ -103,7 +103,7 @@ int main() {
        EL valor True o False hacen que en la funcion imprimir_tablero
        la condicion Ocultar haga su trabajo en ocultar o no los Barcos 'B'
       */
-      imprimir_tablero(tablero_cpu, tam, false);
+      imprimir_tablero(tablero_cpu, tam, true);
       printf(
           "\nLeyenda: B = Barco   X = Impacto  O = Agua  ~ = no disparado\n");
 
