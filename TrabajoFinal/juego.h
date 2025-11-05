@@ -7,6 +7,7 @@
   Define:
   - Constantes visuales (AGUA, BARCO, IMPACTO, FALLO)
   - Estructura Barco
+  - Estructura ModoCazeria
   - Prototipos de funciones para:
     - Creación y liberación de tableros
     - Inicialización y visualización

@@ -13,7 +13,7 @@
 ----------------------------------------------------------*/
 #ifndef JUGADORES_H
 #define JUGADORES_H
-#define MAX_JUGADORES 1
+#define MAX_JUGADORES 2
 
 typedef struct {
   char nombre[30];

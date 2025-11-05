@@ -62,7 +62,7 @@ int main() {
   // int score_cpu = 0;
 
   for (int turno = 0; turno < cantidad_jugadores; turno++) {
-    // printf("\033[2J\033[H"); no funciono
+    // printf("\033[2J\033[H"); no funciono =(
     system("cls");
 
     // Tablero del jugador
@@ -219,10 +219,10 @@ int main() {
          y contra el ultimo jugador pierda no se hace score entre jugadas
          por lo cual solo queda el ultimo valor de jugada
 
-      ** Se soluciono siendo el error un problema dentro del bucle de 
+      ** Se soluciono siendo el error un problema dentro del bucle de
           jugadores y la solucion implementada es que guarde solamente
           el puntaje de la ultima partida.
-          Queda de tarea implementar un Score_cpu en el cual sea 
+          Queda de tarea implementar un Score_cpu en el cual sea
           acumulativo siendo
           <score_cpu ((Impactos/ movimientos))/(Maxjugadores)>
 --------------------------------------------------------------------------
@@ -241,5 +241,12 @@ int main() {
        en el caso de que sea dificil al realizar un Impacto X se hace una
        cruz por cordenadas hasta el proximo impacto y asi hasta hundir
        el Barco.
+--------------------------------------------------------------------------
+---------------------------OBSERVACION------------------------------------
+    * Problemas de dimención en el tablero si el tamaño es menor al
+      espacio de los barcos el juego cierra
+
+    ** Condicion fundamental que el tablero sea 1 espacio mayol al tamaño
+       del Barco mas grande
 --------------------------------------------------------------------------
 */

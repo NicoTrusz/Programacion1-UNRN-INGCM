@@ -170,6 +170,7 @@ bool disparo_computadora(char **tablero, bool **disparos, int tam, FILE *log,
   registrar_disparo(log, f, c, acierto);
   return acierto;
 }
+
 bool disparo_computadora_inteligente(char **tablero, bool **disparos, int tam,
                                      FILE *log, int *score,
                                      ModoCazeria *estado) {
@@ -219,6 +220,7 @@ bool disparo_computadora_inteligente(char **tablero, bool **disparos, int tam,
   registrar_disparo(log, f, c, acierto);
   return acierto;
 }
+
 void registrar_disparo(FILE *archivo, int fila, int col, bool acierto) {
   if (acierto) {
     fprintf(archivo, "Disparo en (%d,%d): Impacto\n", fila, col);
