@@ -1,6 +1,6 @@
 /*--------------------------------------------------------
   ===========================
-    Archivo: jugadores.h
+     Archivo: jugadores.h
   ===========================
   Encabezado del módulo de gestión de jugadores.
 

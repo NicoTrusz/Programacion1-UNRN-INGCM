@@ -1,6 +1,6 @@
 /*------------------------------------------------------------------------------
   ===========================
-  Archivo: juego.c
+      Archivo: juego.c
   ===========================
   Implementación de funciones relacionadas al tablero y lógica de juego.
 
