@@ -11,7 +11,8 @@
   - colocar_barcos: ubica barcos aleatoriamente sin superposición
   - disparar: marca impacto o fallo
   - quedan_barcos: verifica si quedan barcos activos
-  - disparo_computadora: lógica de disparo aleatorio sin repetir
+  - disparo_computadora: lógica de disparo aleatorio sin repetir y disparo
+    modo cazador que al impacto realiza una cruz 
   - registrar_disparo: guarda jugada en archivo
   - crear_matriz_bool / liberar_matriz_bool: para seguimiento de disparos CPU
 -------------------------------------------------------------------------------*/
